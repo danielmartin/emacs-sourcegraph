@@ -37,8 +37,8 @@
 ;;
 ;;  (require 'sourcegraph)
 ;;
-;; Configure the `sourcegraph-url' variable so that it points to the
-;; URL where the Sourcegraph instance is running:
+;; You can configure the `sourcegraph-url' variable so that it points
+;; to the URL where your Sourcegraph instance is running:
 ;;
 ;;  (setq sourcegraph-url "https://sourcegraph_URL_or_IP")
 ;;
@@ -64,7 +64,7 @@
   "Minor mode for working with Sourcegraph."
   :group 'external)
 
-(defcustom sourcegraph-url ""
+(defcustom sourcegraph-url "https://sourcegraph.com"
   "URL of the Sourcegraph instance."
   :group 'sourcegraph
   :type 'string)
