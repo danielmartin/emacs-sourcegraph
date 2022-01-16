@@ -169,6 +169,18 @@ automatically."
          (remote-url (sourcegraph--git-get-remote-url remote repo)))
     (list branch remote-url)))
 
+
+;; Helpers
+
+(defun sourcegraph--default-search-query ()
+  "Return the default thing to search for.
+If the region is active, return that.  Otherwise, return the
+symbol at point."
+  (if (use-region-p)
+      (buffer-substring-no-properties (region-beginning) (region-end))
+    (when-let ((symbol (symbol-at-point)))
+      (substring-no-properties (symbol-name symbol)))))
+
 ;; Main commands
 
 ;;;###autoload
@@ -236,7 +248,11 @@ automatically."
 ;;;###autoload
 (defun sourcegraph-search (query)
   "Search for QUERY in Sourcegraph."
-  (interactive "sSearch term: ")
+  (interactive (list
+                (read-string
+                 (format "Search in Sourcegraph (default %s): "
+                         (sourcegraph--default-search-query))
+                 nil nil (sourcegraph--default-search-query))))
   (when (string-empty-p sourcegraph-url)
     (user-error "The `sourcegraph-url' variable is not configured"))
   (let ((url
