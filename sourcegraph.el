@@ -61,8 +61,8 @@
 ;; Customize
 
 (defgroup sourcegraph nil
-  "Minor mode for working with Sourcegraph."
-  :group 'external)
+  "Minor mode for working with the Sourcegraph code search engine."
+  :group 'tools)
 
 (defcustom sourcegraph-url "https://sourcegraph.com"
   "URL of the Sourcegraph instance."
